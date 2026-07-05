@@ -4,43 +4,85 @@ using System.Linq;
 
 public class Curs
 {
-    public bool areDistribuita { get; set; }
+    public int Id { get; set; }
 
-    public Tuple<float, float>[]? NoteDistribuite { get; set; }
+    public bool AreDistribuita { get; set; }
 
-    public float[]? NoteCurs { get; set; }
+    public List<float> Distribuita1 { get; set; } = new();
+    public List<float> Distribuita2 { get; set; } = new();
 
-
-
-    public float CalculMedieCurs()
+    public Curs(bool areDistribuita)
     {
-        if (NoteCurs == null || NoteCurs.Length == 0)
-            return 0f;
-        
-        float sum = 0;
-        foreach (float nota in NoteCurs)
-            sum += nota;
-        
-        return sum / NoteCurs.Length;
+        AreDistribuita = areDistribuita;
     }
 
-    public float CalculMedieCurs(bool areDistribuita)
+    // =========================
+    // ADĂUGARE DISTRIBUITA 1
+    // =========================
+    public void AdaugaDistribuita1(float nota)
     {
-        if (areDistribuita)
-        {
-            if (NoteDistribuite == null || NoteDistribuite.Length == 0)
-                return 0f;
+        Validate(nota);
 
-            var mediaDistribuita = new List<float>();
-            foreach (var nota in NoteDistribuite)
-            {
-                mediaDistribuita.Add((nota.Item1 + nota.Item2) / 2f);
-            } 
-            return mediaDistribuita.Max();
-        }
-        else
+        if (!AreDistribuita)
+            throw new InvalidOperationException("Cursul nu are distribuție.");
+
+        if (Distribuita1.Count >= 3)
+            throw new InvalidOperationException("Max 3 încercări pentru Distribuita 1.");
+
+        Distribuita1.Add(nota);
+    }
+
+    // =========================
+    // ADĂUGARE DISTRIBUITA 2
+    // =========================
+    public void AdaugaDistribuita2(float nota)
+    {
+        Validate(nota);
+
+        if (!AreDistribuita)
+            throw new InvalidOperationException("Cursul nu are distribuție.");
+
+        if (Distribuita2.Count >= 3)
+            throw new InvalidOperationException("Max 3 încercări pentru Distribuita 2.");
+
+        Distribuita2.Add(nota);
+    }
+    // =========================
+    // ADAUGA NOTA
+    // =========================
+    public void AdaugaNota(float nota)
+{
+    Validate(nota);
+
+    if (AreDistribuita)
+        throw new InvalidOperationException("Cursul are distribuție. Folosește AdaugaDistribuita1/2.");
+
+    Distribuita1.Add(nota);
+}
+
+    // =========================
+    // VALIDARE NOTA
+    // =========================
+    private void Validate(float nota)
+    {
+        if (nota < 0 || nota > 10)
+            throw new ArgumentOutOfRangeException(nameof(nota));
+    }
+
+    // =========================
+    // CALCUL MEDIE CURS
+    // =========================
+    public float CalculMedie()
+    {
+        if (!AreDistribuita)
         {
-            return CalculMedieCurs();
+            var all = Distribuita1.Concat(Distribuita2).ToList();
+            return all.Count == 0 ? 0 : all.Max();
         }
+
+        float max1 = Distribuita1.Count > 0 ? Distribuita1.Max() : 0;
+        float max2 = Distribuita2.Count > 0 ? Distribuita2.Max() : 0;
+
+        return (max1 + max2) / 2f;
     }
 }

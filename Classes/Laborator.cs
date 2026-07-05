@@ -1,92 +1,95 @@
-class Laborator
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Laborator
 {
-    public float[]? NoteLaborator { get; set; }
+    public int Id { get; set; }
 
-    public float notaProiect { get; set; }
-    public int PondereProiect { get; set; }
+    public List<float> NoteLaborator { get; set; } = new();
 
-    public float notaSeminar { get; set; }
-    public int PondereSeminar { get; set; }
+    private float? notaProiect;
+    private int pondereProiect;
 
+    private float? notaSeminar;
+    private int pondereSeminar;
 
-    private float CalculMedieLaborator()
+    public void AdaugaNotaLaborator(float nota)
     {
-        if (NoteLaborator == null || NoteLaborator.Length == 0)
-            return 0f;
-        
-        float sum = 0;
-        foreach (float nota in NoteLaborator)
-            sum += nota;
-        
-        return sum / NoteLaborator.Length;
+        if (nota < 0 || nota > 10)
+            throw new ArgumentOutOfRangeException(nameof(nota));
+
+        NoteLaborator.Add(nota);
     }
 
-    public float CalculMedieLaborator(bool hasProj)
+    // =========================
+    // PROIECT (CONTROLAT)
+    // =========================
+    public void SetProiect(float nota, int pondere)
     {
+        ValidateNota(nota);
+        ValidatePondere(pondere);
 
-        if (!VerificaPondere())
-        {
-            return 0f;
-        }
-        
-        if (NoteLaborator == null || NoteLaborator.Length == 0)
-            return 0f;
-
-        if (hasProj)
-        {
-            float sum = 0;
-            foreach (float nota in NoteLaborator) sum += nota;
-
-            return (sum / NoteLaborator.Length) * (1 - PondereProiect / 100f) + notaProiect * (PondereProiect / 100f); 
-            
-        }
-        else
-        {
-            CalculMedieLaborator();
-        }
-        Console.WriteLine("CalculMedieLaborator(bool hasProj) called with hasProj = " + hasProj);
-        return 222;
+        notaProiect = nota;
+        pondereProiect = pondere;
     }
 
-    public float CalculMedieLaborator(bool hasProj,bool hasSem)
+    // =========================
+    // SEMINAR (CONTROLAT)
+    // =========================
+    public void SetSeminar(float nota, int pondere)
     {
-        if (!VerificaPondere())
-        {
-            return 0f;
-        }
+        ValidateNota(nota);
+        ValidatePondere(pondere);
 
-         if (NoteLaborator == null || NoteLaborator.Length == 0)
-            return 0f;
-
-        if (hasProj && hasSem)
-        {
-           float sum = 0;
-            foreach (float nota in NoteLaborator) sum += nota;
-
-            return sum / NoteLaborator.Length * (1 - PondereProiect / 100f) + notaProiect * (PondereProiect / 100f) + notaSeminar * (PondereSeminar / 100f);
-        }
-        else
-        {
-            return CalculMedieLaborator();
-        }
+        notaSeminar = nota;
+        pondereSeminar = pondere;
     }
 
-    private bool VerificaPondere()
+    // =========================
+    // VALIDĂRI
+    // =========================
+    private void ValidateNota(float nota)
     {
-        if(PondereProiect + PondereSeminar > 100)
-        {
-            Console.WriteLine("Ponderea proiectului si seminarului depaseste 100%");
-            return false;
-        }
-
-       if(PondereProiect + PondereSeminar == 100)
-        {
-            Console.WriteLine("Ponderea proiectului si seminarului este 100%. Notele de laborattor nu vor fi luate in considerare");
-            return false;
-        }
-
-        return true;
+        if (nota < 0 || nota > 10)
+            throw new ArgumentOutOfRangeException(nameof(nota));
     }
 
+    private void ValidatePondere(int pondere)
+    {
+        if (pondere < 0 || pondere > 100)
+            throw new ArgumentOutOfRangeException(nameof(pondere));
+    }
 
+    private float MedieLaboratorSimpla()
+    {
+        return NoteLaborator.Count == 0 ? 0 : NoteLaborator.Average();
+    }
+
+    // =========================
+    // CALCUL FINAL
+    // =========================
+    public float CalculMedieLaborator()
+    {
+        int totalPonderi = pondereProiect + pondereSeminar;
+
+        if (totalPonderi > 100)
+            throw new InvalidOperationException("Ponderile depășesc 100%.");
+
+        float medieLab = MedieLaboratorSimpla();
+
+        float pProiect = pondereProiect / 100f;
+        float pSeminar = pondereSeminar / 100f;
+        float pLab = 1f - (pProiect + pSeminar);
+
+        float rezultat = medieLab * pLab;
+
+        if (notaProiect.HasValue)
+            rezultat += notaProiect.Value * pProiect;
+
+        if (notaSeminar.HasValue)
+            rezultat += notaSeminar.Value * pSeminar;
+
+        return rezultat;
+    }
 }

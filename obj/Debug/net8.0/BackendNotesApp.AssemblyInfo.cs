@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BackendNotesApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f05694d53e036b66fdaa9e73d6b3ac8c6b97ebb3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+99ac14c7aecf2f8291f2107c444a5c62e53a020c")]
 [assembly: System.Reflection.AssemblyProductAttribute("BackendNotesApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BackendNotesApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
