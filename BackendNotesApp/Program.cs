@@ -51,6 +51,13 @@ public class Program
         Console.WriteLine($"Media la materia {SSC.Nume} este: {medieSSC}.");
         Console.WriteLine($"Media la laboratorul {SSC.Nume} este: {medieLaboratorSSC}.");
         Console.WriteLine($"Media la cursul {SSC.Nume} este: {medieCursSSC}.");
+
+        // 1. Inițializează și creează tabelele din init.sql (pune calea corectă către init.sql)
+        string initPath = Path.Combine(AppContext.BaseDirectory, "Classes", "Init.sql");
+        DatabaseSqlite.InitializeDatabase(initPath);
+
+        // 2. Verifică dacă tabelele au fost create
+        DatabaseSqlite.VerifyTables();
     }
 }
 

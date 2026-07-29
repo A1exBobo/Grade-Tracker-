@@ -1,28 +1,45 @@
-create table Semestru(
-    ID int primary key,
-    Numar int not null,
-)
+CREATE TABLE IF NOT EXISTS Semestru (
+    ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    Numar INT NOT NULL CHECK (Numar IN (1, 2))
+);
 
-create table Curs(
-    ID int primary key,
-    AreDistribuita int not null,
-)
+CREATE TABLE IF NOT EXISTS Curs (
+    ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    AreDistribuita BOOLEAN NOT NULL DEFAULT 0
+);
 
-create table Laborator(
-    ID int primary key,
-    NotaProiect int,     --poate fi null daca nu a fost dat proiectul
-    PondereProiect int,  --maxim 100/cred ca tot de la 0 la 1
-    
-)
+CREATE TABLE IF NOT EXISTS Laborator (
+    ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    NotaProiect REAL NULL,
+    PondereProiect INT NOT NULL CHECK (PondereProiect BETWEEN 0 AND 100),
+    NotaSeminar REAL NULL,
+    PondereSeminar INT NOT NULL DEFAULT 0 CHECK (PondereSeminar BETWEEN 0 AND 100)
+);
 
-create table Materie(
-    ID int primary key,
-    Nume varchar(50) not null,
-    NumarCredite int not null,           --maxim 5 
-    PondereCurs int not null,                --maxim 100//desi cred ca e de la 0 la 1 
-    SemestruID int not null,
-    foreign key (SemestruID) references Semestru(ID)
-    CursId int not null,
-    foreign key (CursId) references Curs(ID)
+CREATE TABLE IF NOT EXISTS Materie (
+    ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    Nume TEXT NOT NULL,
+    NumarCredite INT NOT NULL CHECK (NumarCredite BETWEEN 1 AND 30),
+    PondereCurs INT NOT NULL CHECK (PondereCurs BETWEEN 0 AND 100),
+    SemestruID INT NOT NULL,
+    CursId INT NOT NULL,
+    LaboratorId INT NULL,
+    FOREIGN KEY (SemestruID) REFERENCES Semestru(ID),
+    FOREIGN KEY (CursId) REFERENCES Curs(ID),
+    FOREIGN KEY (LaboratorId) REFERENCES Laborator(ID)
+);
 
-)
+CREATE TABLE IF NOT EXISTS Distribuita (
+    ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    CursId INT NOT NULL,
+    NumarEvaluare INT NOT NULL,
+    Nota REAL NULL,
+    FOREIGN KEY (CursId) REFERENCES Curs(ID)
+);
+
+CREATE TABLE IF NOT EXISTS NotaLaborator (
+    ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    LaboratorId INT NOT NULL,
+    Nota REAL NULL,
+    FOREIGN KEY (LaboratorId) REFERENCES Laborator(ID)
+);
