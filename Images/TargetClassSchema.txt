@@ -1,0 +1,139 @@
+@startuml
+
+skinparam packageStyle rectangle
+
+package "Entities" {
+
+    class Curs {
+        +Id : int
+        +AreDistribuita : bool
+        +Distribuita1 : List<float>
+        +Distribuita2 : List<float>
+    }
+
+    class Laborator {
+        +Id : int
+        +NoteLaborator : List<float>
+        -NotaProiect : float?
+        -PondereProiect : int
+        -NotaSeminar : float?
+        -PondereSeminar : int
+    }
+
+    class Materie {
+        +Id : int
+        +Nume : string?
+        +NumarCredite : int
+        +PondereCurs : float
+        +Curs : Curs?
+        +Laborator : Laborator?
+    }
+
+    class Semestru {
+        +Materii : List<Materie>
+    }
+}
+
+
+package "Repositories" {
+
+    interface IRepository<T> {
+        +Save(entity : T)
+        +Update(entity : T)
+        +Delete(id : int)
+        +Get(id : int) : T
+    }
+
+
+    class CursRepository {
+        +Save(curs : Curs)
+        +Update(curs : Curs)
+        +Delete(id : int)
+        +Get(id : int) : Curs
+    }
+
+
+    class LaboratorRepository {
+        +Save(laborator : Laborator)
+        +Update(laborator : Laborator)
+        +Delete(id : int)
+        +Get(id : int) : Laborator
+    }
+
+
+    class MaterieRepository {
+        +Save(materie : Materie)
+        +Update(materie : Materie)
+        +Delete(id : int)
+        +Get(id : int) : Materie
+    }
+
+
+    class SemestruRepository {
+        +Save(semestru : Semestru)
+        +Update(semestru : Semestru)
+        +Delete(id : int)
+        +Get(id : int) : Semestru
+    }
+
+
+    IRepository <|.. CursRepository
+    IRepository <|.. LaboratorRepository
+    IRepository <|.. MaterieRepository
+    IRepository <|.. SemestruRepository
+}
+
+
+package "Services" {
+
+    class CatalogService {
+
+        +AdaugaNotaCurs()
+        +AdaugaNotaLaborator()
+        +SetProiect()
+        +SetSeminar()
+
+        +CalculMedieCurs()
+        +CalculMedieLaborator()
+        +CalculMedieMaterie()
+        +CalculMedieSemestru()
+
+        +Validate()
+    }
+}
+
+
+package "Database" {
+
+    class DatabaseConnection {
+        +Open()
+        +Close()
+        +ExecuteQuery()
+    }
+}
+
+
+' Service dependencies
+
+CatalogService --> CursRepository
+CatalogService --> LaboratorRepository
+CatalogService --> MaterieRepository
+CatalogService --> SemestruRepository
+
+
+' Repository dependencies
+
+CursRepository --> DatabaseConnection
+LaboratorRepository --> DatabaseConnection
+MaterieRepository --> DatabaseConnection
+SemestruRepository --> DatabaseConnection
+
+
+' Entity relationships
+
+Semestru "1" --> "*" Materie
+Materie --> Curs
+Materie --> Laborator
+
+
+@enduml

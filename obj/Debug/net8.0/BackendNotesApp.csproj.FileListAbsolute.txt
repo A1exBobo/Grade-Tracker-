@@ -1,0 +1,14 @@
+/media/alex/AlexBobocSSD/AlexWorkspace/C#-projects/BackendNotesApp/bin/Debug/net8.0/BackendNotesApp
+/media/alex/AlexBobocSSD/AlexWorkspace/C#-projects/BackendNotesApp/bin/Debug/net8.0/BackendNotesApp.deps.json
+/media/alex/AlexBobocSSD/AlexWorkspace/C#-projects/BackendNotesApp/bin/Debug/net8.0/BackendNotesApp.runtimeconfig.json
+/media/alex/AlexBobocSSD/AlexWorkspace/C#-projects/BackendNotesApp/bin/Debug/net8.0/BackendNotesApp.dll
+/media/alex/AlexBobocSSD/AlexWorkspace/C#-projects/BackendNotesApp/bin/Debug/net8.0/BackendNotesApp.pdb
+/media/alex/AlexBobocSSD/AlexWorkspace/C#-projects/BackendNotesApp/obj/Debug/net8.0/BackendNotesApp.GeneratedMSBuildEditorConfig.editorconfig
+/media/alex/AlexBobocSSD/AlexWorkspace/C#-projects/BackendNotesApp/obj/Debug/net8.0/BackendNotesApp.AssemblyInfoInputs.cache
+/media/alex/AlexBobocSSD/AlexWorkspace/C#-projects/BackendNotesApp/obj/Debug/net8.0/BackendNotesApp.AssemblyInfo.cs
+/media/alex/AlexBobocSSD/AlexWorkspace/C#-projects/BackendNotesApp/obj/Debug/net8.0/BackendNotesApp.csproj.CoreCompileInputs.cache
+/media/alex/AlexBobocSSD/AlexWorkspace/C#-projects/BackendNotesApp/obj/Debug/net8.0/BackendNotesApp.dll
+/media/alex/AlexBobocSSD/AlexWorkspace/C#-projects/BackendNotesApp/obj/Debug/net8.0/refint/BackendNotesApp.dll
+/media/alex/AlexBobocSSD/AlexWorkspace/C#-projects/BackendNotesApp/obj/Debug/net8.0/BackendNotesApp.pdb
+/media/alex/AlexBobocSSD/AlexWorkspace/C#-projects/BackendNotesApp/obj/Debug/net8.0/BackendNotesApp.genruntimeconfig.cache
+/media/alex/AlexBobocSSD/AlexWorkspace/C#-projects/BackendNotesApp/obj/Debug/net8.0/ref/BackendNotesApp.dll
