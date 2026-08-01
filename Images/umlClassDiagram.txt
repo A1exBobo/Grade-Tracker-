@@ -1,0 +1,54 @@
+@startuml
+
+class Curs {
+    + Id : int
+    + AreDistribuita : bool
+    + Distribuita1 : List<float>
+    + Distribuita2 : List<float>
+
+    + AdaugaDistribuita1()
+    + AdaugaDistribuita2()
+    + AdaugaNota()
+    + Validate()
+    + CalculMedie()
+}
+
+class Laborator {
+    + Id : int
+    + NoteLaborator : List<float>
+    - NotaProiect : float?
+    - pondereProiect : int
+    - NotaSeminar : float?
+    - pondereSeminar : int
+
+    + AdaugaNotaLaborator()
+    + SetProiect()
+    + SetSeminar()
+    + ValidateNota()
+    + ValidatePondere()
+    + CalculMedieLaborator()
+}
+
+class Materie {
+    + Id : int
+    + Nume : string?
+    + NumarCredite : int
+    + PondereCurs : float
+    + Curs : Curs?
+    + Laborator : Laborator?
+
+    + Validate()
+    + CalculMedieMaterie()
+}
+
+class Semestru {
+    + Materii : List<Materie>?
+
+    + CalculMedieSemestru()
+}
+
+Semestru "1" --> "*" Materie
+Materie --> Curs
+Materie --> Laborator
+
+@enduml
