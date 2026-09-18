@@ -9,4 +9,13 @@ public class Laborator
     public float NotaSeminar{get;set;}
     public int PondereSeminar{get;set;}
 
+    public Laborator(int id,float notaProiect,int pondereProiect, float notaSeminar,int pondereSeminar)
+    {
+        Id = id;
+        NotaProiect = notaProiect;
+        PondereProiect = pondereProiect ;
+        NotaSeminar = notaSeminar;
+        PondereSeminar = pondereSeminar;
+    }
+
 }

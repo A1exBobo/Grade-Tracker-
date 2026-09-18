@@ -24,14 +24,32 @@ namespace BackendNotesApp
                 Console.WriteLine(nota);
             }
 */
+
+//Test CursRepository
             CursRepository cursRepo = new CursRepository();
 
             cursRepo.Save(Geogra);
             cursRepo.Save(Franceza);
 
+            Geogra.AreDistribuita = false;
+            cursRepo.Update(Geogra);
+            cursRepo.Delete(Franceza);
 
+//Test LaboratorRepository
 
+            LaboratorRepository inLabRepo = new LaboratorRepository();
+            Laborator lab1 = new Laborator(1,6.7f,50,5,50);
+            Laborator lab2 = new Laborator(2,6.79f,30,8,70);
 
+            inLabRepo.Save(lab1);
+            inLabRepo.Save(lab2);
+
+//Test MaterieRepository
+            MaterieRepository inMatRepo = new MaterieRepository();
+            Materie Mat1 = new Materie(1,"Cultura si civilizatie",3,34,Geogra,lab1);
+            inMatRepo.Save(Mat1);
+
+//
         }
     }
 

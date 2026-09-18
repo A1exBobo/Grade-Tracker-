@@ -22,7 +22,7 @@ namespace BackendNotesApp
 
                     // Check Error
                     if(result < 0)
-                        Console.WriteLine("Error inserting data into Database!Update(curs)");
+                        Console.WriteLine("Eroare:Insert(curs)\nEroare la inserarea cursului.");
                 }
             }
 
@@ -33,7 +33,7 @@ namespace BackendNotesApp
       
             using(SQLiteConnection connection = new SQLiteConnection(_connectionString))
             {
-            String query = "INSERT INTO Curs(ID,AreDistribuita) VALUES (@ID,@AreDistribuita)";
+            String query = $"UPDATE Curs SET AreDistribuita = {curs.AreDistribuita} WHERE Id = {curs.Id};  ";
 
                 using(SQLiteCommand command = new SQLiteCommand(query, connection))
                 {
@@ -44,23 +44,34 @@ namespace BackendNotesApp
 
                     // Check Error
                     if(result < 0)
-                        Console.WriteLine("Error inserting data into Database!Update(curs)");
+                        Console.WriteLine("Eroare: Update(Curs)\nEroare la modificarea cursului.");
                 }
             }
 
         }
 
-        public void Delete(int id)
+        public void Delete(Curs curs)
         {
-            ;
+             using(SQLiteConnection connection = new SQLiteConnection(_connectionString))
+            {
+            String query = $"DELETE FROM Curs WHERE Id = {curs.Id}; ";
+
+            }
+
+            //Ceva nu a functionat aici sau e nevoie de extra verificari 
 
         }
 
-        public void Get(int id)
+        public void Get(Curs curs)
         {
-            ;
+                  using(SQLiteConnection connection = new SQLiteConnection(_connectionString))
+            {
+            String query = $"SELECT * FROM Curs WHERE Id = {curs.Id}; ";
+
+            }
         }
 
+        //Ceva nu a functionat aici sau e nevoie de extra verificari 
 
     }
 
