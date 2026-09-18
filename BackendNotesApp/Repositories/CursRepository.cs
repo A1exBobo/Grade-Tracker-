@@ -4,7 +4,7 @@ namespace BackendNotesApp
 {
     public class CursRepository : IRepository
     {
-        private string _connectionString = "Data Source = MyDatabase.sqlite";
+        private readonly string _connectionString = "Data Source=MyDatabase.sqlite;Version=3;";
 
         public void Save(Curs curs)
         {
