@@ -1,6 +1,7 @@
+using BackendNotesApp;
+
 public class SemestruRepository : IRepository
 {
-    private Database database; //singleton model
     public void Save(Semestru semestru)
     {
         ;

@@ -1,8 +1,8 @@
-public class CatalogService
+public class CatalogService            //o sa il folosesc in Program.cs
 {
     public void AdaugaNotaCurs()
     {
-        ;
+        ;             //Cursrepository.AddNota(nota sau fara nota)   sau asa ceva
     }
     public void AdaugaNotaLaborator()
     {

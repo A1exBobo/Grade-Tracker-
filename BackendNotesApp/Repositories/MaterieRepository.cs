@@ -1,6 +1,7 @@
+using BackendNotesApp;
+
 public class MaterieRepository : IRepository
 {
-    private Database database; //singleton model
     public void Save(Materie materie)
     {
         ;

@@ -1,7 +1,8 @@
-internal class Laborator
+using BackendNotesApp;
+public class Laborator
 {
     public int Id{get;set;}
-    public List<float> NoteLaborator{get;set;}
+    public List<float>? NoteLaborator{get;set;}
 
     public float NotaProiect{get;set;}
     public int PondereProiect{get;set;}

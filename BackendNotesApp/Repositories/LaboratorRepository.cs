@@ -1,6 +1,6 @@
+using BackendNotesApp;
 public class LaboratorRepository : IRepository
 {
-    private Database database; //singleton model
     public void Save(Laborator laborator)
     {
         ;
