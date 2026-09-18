@@ -1,4 +1,4 @@
-public interface Irepository
+public interface IRepository
 {
     public void Save(object T)
     {
