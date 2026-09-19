@@ -9,7 +9,7 @@ namespace BackendNotesApp
         {
             InitializeDatabase db = new InitializeDatabase();
 
-
+//creare obiecte curs
             Curs Geogra = new Curs(3,true);
             Geogra.Distribuita1.Add(3);
             Geogra.Distribuita1.Add(7);
@@ -39,17 +39,30 @@ namespace BackendNotesApp
 
             LaboratorRepository inLabRepo = new LaboratorRepository();
             Laborator lab1 = new Laborator(1,6.7f,50,5,50);
-            Laborator lab2 = new Laborator(2,6.79f,30,8,70);
+            Laborator lab2 = new Laborator(2,4.79f,30,8,70);
 
             inLabRepo.Save(lab1);
             inLabRepo.Save(lab2);
+
+            lab1.NotaSeminar = 9.5f;
+            inLabRepo.Update(lab1);
+            inLabRepo.Delete(lab1);
 
 //Test MaterieRepository
             MaterieRepository inMatRepo = new MaterieRepository();
             Materie Mat1 = new Materie(1,"Cultura si civilizatie",3,34,Geogra,lab1);
             inMatRepo.Save(Mat1);
 
+            Mat1.Curs = Franceza;   //modific datele cursului
+
+            inMatRepo.Update(Mat1);
+
 //
+
+
+
+
+
         }
     }
 

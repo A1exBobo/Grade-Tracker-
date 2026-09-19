@@ -5,7 +5,7 @@ public class Semestru
 
    public Semestru(int id,List<Materie> materii)
    {
-      id = Id;
+      Id = id;
       Materii = materii;
    }
 }

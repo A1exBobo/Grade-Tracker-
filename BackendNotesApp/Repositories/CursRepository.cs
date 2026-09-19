@@ -55,10 +55,18 @@ namespace BackendNotesApp
              using(SQLiteConnection connection = new SQLiteConnection(_connectionString))
             {
             String query = $"DELETE FROM Curs WHERE Id = {curs.Id}; ";
+                using(SQLiteCommand command = new SQLiteCommand(query, connection))
+                {
+
+                    connection.Open();
+                    int result = command.ExecuteNonQuery();
+
+                    // Check Error
+                    if(result < 0)
+                        Console.WriteLine("Eroare:Delete(curs)\nEroare la stergerea cursului.");
+                }
 
             }
-
-            //Ceva nu a functionat aici sau e nevoie de extra verificari 
 
         }
 
