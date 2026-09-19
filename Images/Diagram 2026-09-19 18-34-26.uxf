@@ -1,0 +1,71 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>770</x><y>110</y><w>180</w><h>90</h></coordinates><panel_attributes>Semestru
+--
+
+ID : Primary key
+Numar : int 
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>150</x><y>390</y><w>370</w><h>160</h></coordinates><panel_attributes>Curs
+--
+
+ID : int
+AreDistribuita: bool
+
+-..
+
+MaterieID : int ;
+foreign key (MaterieID) reference Materie(ID)
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>670</x><y>390</y><w>290</w><h>200</h></coordinates><panel_attributes>Laborator
+--
+
+ID : int
+NotaProiect : float
+PondereProiect : int
+NotaSeminar : float
+PondereSeminar : int
+
+-..
+
+MaterieID : int ;
+foreign key (MaterieID) reference Materie(ID)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>350</x><y>110</y><w>290</w><h>160</h></coordinates><panel_attributes>Materie
+--
+
+Nume : varchar(50);
+NumarCredite : int ;  
+PondereCurs : int ;
+
+-..
+
+SemestruID : int  ;
+foreign key (SemestruID) reference Semestru(ID)
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>150</x><y>690</y><w>370</w><h>160</h></coordinates><panel_attributes>Distribuita
+--
+
+ID : int
+CursID : int
+Nota : int
+NumarDistribuita : int 
+
+-..
+
+foreign key (CursID) reference Curs(ID)
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>670</x><y>690</y><w>300</w><h>160</h></coordinates><panel_attributes>NoteLaborator
+--
+
+ID : int 
+LaboratorID : int ;
+Nota: int
+
+-..
+
+foreign key (LaboratorID) reference Laborator(ID)</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>320</x><y>540</y><w>50</w><h>170</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=0..n
+m2=0..1</panel_attributes><additional_attributes>10;10;10;150</additional_attributes></element><element><id>Relation</id><coordinates><x>820</x><y>580</y><w>50</w><h>130</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=0..n
+m2=0..1</panel_attributes><additional_attributes>10;10;10;110</additional_attributes></element><element><id>Relation</id><coordinates><x>330</x><y>260</y><w>160</w><h>150</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=0..n
+m2=0..1</panel_attributes><additional_attributes>130;10;110;50;40;70;10;130</additional_attributes></element><element><id>Relation</id><coordinates><x>490</x><y>260</y><w>350</w><h>150</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=0..n
+m2=0..1</panel_attributes><additional_attributes>10;10;40;60;260;70;320;130</additional_attributes></element><element><id>Relation</id><coordinates><x>630</x><y>150</y><w>160</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=0..n
+m2=0..1</panel_attributes><additional_attributes>10;10;140;10</additional_attributes></element></diagram>

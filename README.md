@@ -3,10 +3,10 @@ Aplicatie de gestionare a notelor
 
 ## Schema bazei de date
 
-![Schema bazei de date](Images/databaseSchema.png)
+![Schema bazei de date](Images/DatabaseDiagram2.png)
 
 
-## Schema curenta
+## Schema curenta a claselor 
 
 ![Schema dupa refactor](Images/TargetClassSchema.png)
 
